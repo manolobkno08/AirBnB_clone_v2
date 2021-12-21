@@ -9,6 +9,7 @@ class FileStorage:
     __objects = {}
 
     def delete(self, obj=None):
+        """Delete function by cls.id"""
         if obj is None:
             return
         obj = obj.__class__.__name__ + '.' + obj.id
