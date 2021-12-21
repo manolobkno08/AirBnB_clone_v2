@@ -132,7 +132,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         elif args[0] not in HBNBCommand.classes:
-            print("** class doesn´t exist")
+            print("** class doesn't exist **")
             return
 
         for i in params:
@@ -146,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
                     value = value.replace('_', ' ')
                     new_values.append(value)
                 else:
-                    if "." in value:
+                    if '.' in value:
                         try:
                             value = float(value)
                             new_values.append(value)
@@ -160,7 +160,8 @@ class HBNBCommand(cmd.Cmd):
                             pass
             except IndexError:
                 pass
-            Dict = dict(zip(new_keys, new_values))
+
+        Dict = dict(zip(new_keys, new_values))
 
         new_instance = HBNBCommand.classes[args[0]]()
         new_instance.__dict__.update(Dict)
