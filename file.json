@@ -1,0 +1,43 @@
+{
+    "State.dc2fcdb0-ff29-47a0-8063-37ddc6a96e11": {
+        "id": "dc2fcdb0-ff29-47a0-8063-37ddc6a96e11",
+        "created_at": "2021-12-20T22:50:32.916962",
+        "updated_at": "2021-12-20T22:50:32.917049",
+        "name": "California",
+        "__class__": "State"
+    },
+    "State.e790dbdf-490d-400d-9331-6d7a1f7b8165": {
+        "id": "e790dbdf-490d-400d-9331-6d7a1f7b8165",
+        "created_at": "2021-12-20T22:50:49.068192",
+        "updated_at": "2021-12-20T22:50:49.068231",
+        "name": "Lufficito",
+        "__class__": "State"
+    },
+    "State.d258cc7d-4b7c-465a-aaa2-f6b6b7e3d6c5": {
+        "id": "d258cc7d-4b7c-465a-aaa2-f6b6b7e3d6c5",
+        "created_at": "2021-12-20T22:50:59.256413",
+        "updated_at": "2021-12-20T22:50:59.256493",
+        "name": "96.5",
+        "__class__": "State"
+    },
+    "State.dbbbe66b-4448-4cf2-b1b4-86037b4c471b": {
+        "id": "dbbbe66b-4448-4cf2-b1b4-86037b4c471b",
+        "created_at": "2021-12-20T22:51:04.532887",
+        "updated_at": "2021-12-20T22:51:04.532962",
+        "name": 96,
+        "__class__": "State"
+    },
+    "State.47d289ec-0544-45c9-9707-835ad79db157": {
+        "id": "47d289ec-0544-45c9-9707-835ad79db157",
+        "created_at": "2021-12-20T22:51:14.457237",
+        "updated_at": "2021-12-20T22:51:14.457283",
+        "name": 90.4,
+        "__class__": "State"
+    },
+    "State.e5b5bc22-1eae-4372-bac7-2a053575e71a": {
+        "id": "e5b5bc22-1eae-4372-bac7-2a053575e71a",
+        "created_at": "2021-12-20T22:53:49.222402",
+        "updated_at": "2021-12-20T22:53:49.222457",
+        "__class__": "State"
+    }
+}
