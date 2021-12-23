@@ -5,18 +5,15 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String
 import models
 
+if models.type_storage == "db":
+    class Amenity(BaseModel, Base):
+        """Class representation Amenity"""
+        __tablename__ = "amenities"
+        name = Column(String(128), nullable=False)
+        # place_amenities = relationship(
+        #     'Place', secondary='place_amenity')
 
-class Amenity(BaseModel):
-    """Amenities"""
-    name = ""
-# if models.type_storage == "db":
-#     class Amenity(BaseModel):
-#         """Amenities"""
-#         __tablename__ = "amenities"
-#         name = Column(String(128), nullable=False)
-#         place_amenities = relationship('Place', secondary='place_amenity')
-
-# else:
-#     class Amenity(BaseModel):
-#         """Amenities"""
-#         name = ""
+else:
+    class Amenity(BaseModel):
+        """Class representation Amenity"""
+        name = ""
