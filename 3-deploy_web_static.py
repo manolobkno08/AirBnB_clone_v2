@@ -64,9 +64,8 @@ def do_deploy(archive_path):
 
 def deploy():
     """ Deployment 3 """
-    try:
-        new_filename = do_pack()
-        x = do_deploy(new_filename)
-        return x
-    except Exception:
+    new_filename = do_pack()
+    if new_filename is None:
         return False
+    x = do_deploy(new_filename)
+    return x
