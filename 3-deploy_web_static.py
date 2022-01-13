@@ -9,10 +9,8 @@ from fabric.api import env, put, run, local
 from os.path import isdir, exists
 import datetime
 
-env.hosts = [
-    '35.237.25.66',
-    '34.234.71.240'
-]
+env.hosts = ['35.237.25.66', '34.234.71.240']
+
 env.user = "ubuntu"
 
 date_now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
@@ -31,34 +29,23 @@ def do_pack():
 
 
 def do_deploy(archive_path):
-    """ Deploy files """
+    """distributes an archive to the web servers"""
     if exists(archive_path) is False:
         return False
     try:
-        filename = archive_path.split('/')[1]
-        no_ext = archive_path.split('/')[1].split('.')[0]
-        final_path = "/data/web_static/releases/"
-
-        # Upload file into the tmp directory
-        put('{}, /tmp/'.format(archive_path))
-        # Create a folder into the server
-        run('sudo mkdir -p {}{}/'.format(final_path, no_ext))
-        # Uncompress file
-        run('sudo tar -xzf /tmp/{} -C {}{}/'.format(
-            filename, final_path, no_ext))
-        # Delete tgz file
-        run('sudo rm /tmp/{}'.format(filename))
-        # Move
-        run('sudo mv {0}{1}/web_static/* {0}{1}/'.format(
-            final_path, no_ext))
-        run('sudo rm -rf {}{}/web_static'.format(final_path, no_ext))
-        # Delete current simbolic link
-        run('sudo rm -rf /data/web_static/current')
-        # Create new simbolic link
-        run('sudo ln -s {}{}/ /data/web_static/current'.format(
-            final_path, no_ext))
+        nameFile = archive_path.split("/")[-1]
+        NFile_no_ext = nameFile.split(".")[0]
+        path = "/data/web_static/releases/"
+        put(archive_path, '/tmp/')
+        run('mkdir -p {}{}/'.format(path, NFile_no_ext))
+        run('tar -xzf /tmp/{} -C {}{}/'.format(nameFile, path, NFile_no_ext))
+        run('rm /tmp/{}'.format(nameFile))
+        run('mv {0}{1}/web_static/* {0}{1}/'.format(path, NFile_no_ext))
+        run('rm -rf {}{}/web_static'.format(path, NFile_no_ext))
+        run('rm -rf /data/web_static/current')
+        run('ln -s {}{}/ /data/web_static/current'.format(path, NFile_no_ext))
         return True
-    except Exception:
+    except:
         return False
 
 
