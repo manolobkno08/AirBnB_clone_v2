@@ -1,11 +1,33 @@
 #!/usr/bin/python3
 
 """
-Files deployment
+Compress before sending
 
 """
-from fabric.api import env, put, run
 from os.path import exists
+from fabric.api import env, put, run, local
+from os.path import isdir, exists
+import datetime
+
+date_now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+
+
+def do_pack():
+    """ Compress to tgz """
+    try:
+        if isdir('versions') is False:
+            local("mkdir versions")
+        filename = "versions/web_static_{}.tgz".format(date_now)
+        local('tar -cvzf {} web_static'.format(filename))
+        return filename
+    except Exception:
+        return None
+
+
+"""
+Files deployment 2
+
+"""
 
 env.hosts = [
     '35.237.25.66',
@@ -42,5 +64,21 @@ def do_deploy(archive_path):
         run('sudo ln -s {}{}/ /data/web_static/current'.format(
             final_path, no_ext))
         return True
+    except Exception:
+        return False
+
+
+"""
+Deploy 3
+
+"""
+
+
+def deploy():
+    """ Deployment 3 """
+    try:
+        new_filename = do_pack()
+        x = do_deploy(new_filename)
+        return x
     except Exception:
         return False
