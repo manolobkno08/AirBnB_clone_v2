@@ -12,7 +12,7 @@ env.hosts = [
     '34.234.71.240'
 ]
 
-# env.user = "ubuntu"
+env.user = "ubuntu"
 
 
 def do_deploy(archive_path):
@@ -43,5 +43,5 @@ def do_deploy(archive_path):
         run('sudo ln -s {}{}/ /data/web_static/current'.format(
             final_path, no_ext))
         return True
-    except Exception:
+    except BaseException:
         return False
