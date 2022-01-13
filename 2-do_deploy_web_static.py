@@ -15,8 +15,8 @@ def do_deploy(archive_path):
     if exists(archive_path) is False:
         return False
     try:
-        filename = archive_path.split('/')[1]
-        no_ext = archive_path.split('/')[1].split('.')[0]
+        filename = archive_path.split('/')[-1]
+        no_ext = filename.split('.')[0]
         final_path = "/data/web_static/releases/"
 
         put(archive_path, '/tmp/')
@@ -31,5 +31,5 @@ def do_deploy(archive_path):
         run('sudo ln -s {}{}/ /data/web_static/current'.format(
             final_path, no_ext))
         return True
-    except Exception:
+    except BaseException:
         return False
