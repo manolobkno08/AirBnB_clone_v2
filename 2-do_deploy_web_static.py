@@ -8,7 +8,6 @@ from fabric.api import env, put, run
 from os.path import exists
 
 env.hosts = ['35.237.25.66', '34.234.71.240']
-env.user = "ubuntu"
 
 
 def do_deploy(archive_path):
@@ -20,7 +19,7 @@ def do_deploy(archive_path):
         no_ext = archive_path.split('/')[1].split('.')[0]
         final_path = "/data/web_static/releases/"
 
-        put('{}, /tmp/'.format(archive_path))
+        put(archive_path, '/tmp/')
         run('sudo mkdir -p {}{}/'.format(final_path, no_ext))
         run('sudo tar -xzf /tmp/{} -C {}{}/'.format(
             filename, final_path, no_ext))
