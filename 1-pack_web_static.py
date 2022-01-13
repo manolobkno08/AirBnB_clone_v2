@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+
+"""
+Compress before sending
+
+"""
 from fabric.api import local
 from os.path import isdir
 import datetime
@@ -7,6 +12,7 @@ date_now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
 
 def do_pack():
+    """ Compress to tgz """
     try:
         if isdir('versions') is False:
             local("mkdir versions")
