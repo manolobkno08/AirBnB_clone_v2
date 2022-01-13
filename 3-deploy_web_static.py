@@ -1,13 +1,19 @@
 #!/usr/bin/python3
 
 """
-Compress before sending
+Deployment 3
 
 """
-from os.path import exists
+
 from fabric.api import env, put, run, local
 from os.path import isdir, exists
 import datetime
+
+env.hosts = [
+    '35.237.25.66',
+    '34.234.71.240'
+]
+env.user = "ubuntu"
 
 date_now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
@@ -22,18 +28,6 @@ def do_pack():
         return filename
     except Exception:
         return None
-
-
-"""
-Files deployment 2
-
-"""
-
-env.hosts = [
-    '35.237.25.66',
-    '34.234.71.240'
-]
-env.user = "ubuntu"
 
 
 def do_deploy(archive_path):
@@ -66,12 +60,6 @@ def do_deploy(archive_path):
         return True
     except Exception:
         return False
-
-
-"""
-Deploy 3
-
-"""
 
 
 def deploy():
