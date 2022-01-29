@@ -27,5 +27,11 @@ def Py_is_fun(text):
     return "Python {}".format(escape(txt))
 
 
+@app.route('/number/<int:n>', strict_slashes=False)
+def n_is_num(n):
+    if isinstance(n, int):
+        return "{} is a number".format(escape(n))
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
