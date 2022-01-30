@@ -8,6 +8,9 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
 
+    def close(self):
+        self.reload()
+
     def delete(self, obj=None):
         """Delete function by cls.id"""
         if obj is None:

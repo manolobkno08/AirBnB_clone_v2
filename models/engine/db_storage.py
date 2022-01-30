@@ -45,6 +45,9 @@ class DBStorage:
         if var_env == 'test':
             Base.metadata.drop_all(self.__engine)
 
+    def close(self):
+        self.__session.close()
+
     def all(self, cls=None):
         """Reurns a dictionary of models currently in storage"""
 
@@ -56,14 +59,16 @@ class DBStorage:
             obj.extend(self.__session.query(Review).all())
             obj.extend(self.__session.query(State).all())
         else:
-            obj = self.__session.query(eval(cls)).all()
+            res_list = res_list = self.__session.query(cls)
+        return {'{}.{}'.format(type(obj).__name__, obj.id): obj
+                for obj in res_list}
 
-        dictionary = {}
-        for element in obj:
-            key = '{}.{}'.format(type(element).__name__, element.id)
-            value = element
-            dictionary[key] = value
-        return dictionary
+        # dictionary = {}
+        # for element in obj:
+        #     key = '{}.{}'.format(type(element).__name__, element.id)
+        #     value = element
+        #     dictionary[key] = value
+        # return dictionary
 
     def save(self):
         """Saves storage dictionary to file"""
@@ -77,6 +82,13 @@ class DBStorage:
         """Deletes object from storage dictionary"""
         if obj is not None:
             self.__session.delete(obj)
+
+    # def reload(self):
+    #     Base.metadata.create_all(self.__engine)
+    #     session = sessionmaker(bind=self.__engine, expire_on_commit=False)
+    #     # scop_session = scoped_session(session)
+    #     # self.__session = scop_session()
+    #     self.__session = session()
 
     def reload(self):
         """Reload object to current db session"""
