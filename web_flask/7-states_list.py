@@ -14,7 +14,7 @@ app = Flask(__name__)
 def fetch_all_states():
     """Get states from DBStorage"""
     fetch_states = storage.all("State").values()
-    return render_template("7-states_list.html", states=fetch_all_states())
+    return render_template("7-states_list.html", states=fetch_states)
 
 
 @app.teardown_appcontext
